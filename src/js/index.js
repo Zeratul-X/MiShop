@@ -16,5 +16,27 @@ var mySwiper = new Swiper('.swiper-container', {
           prevEl: '.swiper-button-prev',
       },
 
-  })
+})
 
+/**
+ * 顶部滚动到500px显示返回顶部
+ */
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 500)
+    {
+        $('.backtotop').css({
+            display: 'block'
+        });
+    } else {
+        $('.backtotop').css({
+            display: 'none'
+        });
+    }
+});
+
+/**
+ * 回到顶部按钮事件
+ */
+$('.backtotop').click(() => {
+    $('body').animate({ scrollTop: '0' }, 'slow');
+})
