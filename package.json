@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "art-template": "^4.13.2",
-    "jquery": "^1.12.4",
+    "jquery": "^3.5.0",
     "swiper": "^2.7.6"
   },
   "devDependencies": {
