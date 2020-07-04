@@ -7,63 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" href="../lib/font/iconfont.css">
 	<link rel="stylesheet" href="../lib/swiper/css/swiper.css">
+	<!--end header -->
+
 </head>
 
 <body>
 	<!-- start header -->
-	<header>
-		<div class="top center">
-			<div class="left fl">
-				<ul>
-					<li><a href="../pages/index.html">小米商城</a></li>
-					<li>|</li>
-					<li><a href="#">MIUI</a></li>
-					<li>|</li>
-					<li><a href="#">loT</a></li>
-					<li>|</li>
-					<li><a href="#">云服务</a></li>
-					<li>|</li>
-					<li><a href="#">金融</a></li>
-					<li>|</li>
-					<li><a href="#">有品</a></li>
-					<li>|</li>
-					<li><a href="#">小爱开放平台</a></li>
-					<li>|</li>
-					<li><a href="#">企业团购</a></li>
-					<li>|</li>
-					<li><a href="#">资质证照</a></li>
-					<li>|</li>
-					<li><a href="#">协议规则</a></li>
-					<li>|</li>
-					<li><a href="#">下载app</a></li>
-					<li>|</li>
-					<li><a href="#">Select Location</a></li>
-					<div class="clear"></div>
-				</ul>
-			</div>
-			<div class="right fr">
-				<div class="gouwuche fr">
-					<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor"
-						xmlns="http://www.w3.org/2000/svg">
-						<path fill-rule="evenodd"
-							d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-					</svg>
-					<a href="../pages/gouwuche.html">购物车</a>
-				</div>
-				<div class="fr">
-					<ul>
-						<li><a href="../pages/login.html">登录</a></li>
-						<li>|</li>
-						<li><a href="../pages/register.html">注册</a></li>
-						<li>|</li>
-						<li><a href="">消息通知</a></li>
-					</ul>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="clear"></div>
-		</div>
-	</header>
+	<div id="header"></div>
 	<!--end header -->
 
 	<!-- start banner_x -->
@@ -76,7 +26,7 @@
 		</a>
 		<div class="nav fl">
 			<ul>
-				<li><a href="../pages/liebiao.html">小米手机</a></li>
+				<li><a href="../pages/goodsList.html">小米手机</a></li>
 				<li><a href="#">红米</a></li>
 				<li><a href="#">平板·笔记本</a></li>
 				<li><a href="#">电视</a></li>
@@ -105,7 +55,7 @@
 	<!-- start banner_y -->
 	<div class="banner_y center">
 		<!-- swiper -->
-		<div class="swiper-container banner" >
+		<div class="swiper-container banner">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide"><img src="../images/banner2.jpg" alt=""></div>
 				<div class="swiper-slide"><img src="../images/banner3.jpg" alt=""></div>
@@ -131,18 +81,18 @@
 						<div class="left fl">
 							<div>
 								<div class="xuangou_left fl">
-									<a href="../pages/liebiao.html">
+									<a href="../pages/goodsList.html">
 										<div class="img fl"><img src="../images/xm6_80.png" alt=""></div>
 										<span class="fl">小米6</span>
 										<div class="clear"></div>
 									</a>
 								</div>
-								<div class="xuangou_right fr"><a href="../pages/xiangqing.html">选购</a></div>
+								<div class="xuangou_right fr"><a href="../pages/detailInfo.html">选购</a></div>
 								<div class="clear"></div>
 							</div>
 							<div>
 								<div class="xuangou_left fl">
-									<a href="../pages/liebiao.html">
+									<a href="../pages/goodsList.html">
 										<div class="img fl"><img src="../images/5c_80.png" alt=""></div>
 										<span class="fl">小米手机5c</span>
 										<div class="clear"></div>
@@ -153,7 +103,7 @@
 							</div>
 							<div>
 								<div class="xuangou_left fl">
-									<a href="../pages/liebiao.html">
+									<a href="../pages/goodsList.html">
 										<div class="img fl"><img src="../images/xmNOTE2-80.jpg" alt=""></div>
 										<span class="fl">小米Note 2</span>
 										<div class="clear"></div>
@@ -1562,24 +1512,27 @@
 		</div>
 	</div>
 
-	<!-- 楼层跳跃 -->
+	<!-- floor -->
 	<ul class="floor">
 		<li><a href="#"><span class="iconfont icon-app"></span>手机APP</a></li>
 		<li><a href="../pages/self_info.html"><span class="iconfont icon-profile"></span>个人中心</a></li>
 		<li><a href="#"><span class="iconfont icon-shouhoufuwu1"></span>售后服务</a></li>
 		<li><a href="#"><span class="iconfont icon-rengongkefu"></span>人工客服</a></li>
-		<li><a href="../pages/gouwuche.html"><span class="iconfont icon-gouwuche"></span>购物车</a></li>
+		<li><a href="../pages/shopCar.html"><span class="iconfont icon-gouwuche"></span>购物车</a></li>
 		<li class="backtotop"><a href="#"><span class="iconfont icon-xiangshangjiantou"></span>回顶部</a></li>
-
 	</ul>
-	<footer class="mt20 center">
-		<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
-		<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div>
-		<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
-	</footer>
+	<!-- end floor -->
+
+	<!-- footer -->
+	<div id="footer"></div>
+	<!-- end footer -->
 	<script src="../lib/jquery.js"></script>
+	<script src="../lib/jquery.cookie.js"></script>
 	<script src="../lib/swiper/js/swiper.js"></script>
 	<script src="../js/index.js"></script>
+	<script src="../js/headers.js"></script>
+
+
 
 </body>
 
