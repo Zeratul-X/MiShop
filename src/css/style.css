@@ -42,11 +42,11 @@ a {
 }
 
 .mt20 {
-	margin-top: 20px;
+	padding-top: 20px;
 }
 
 .mt10 {
-	margin-top: 10px;
+	padding-top: 10px;
 }
 
 .ml20 {
@@ -547,9 +547,13 @@ header .top .right .gouwuche a {
 
 .danpin .main {
 	width: 1226px;
-	height: 340px;
 }
-
+.danpin .main::after{
+	content:"";
+	display: block;
+	height: 0;
+	clear: both;
+}
 .danpin .main .mingxing {
 	width: 234px;
 	height: 339px;
@@ -619,7 +623,11 @@ header .top .right .gouwuche a {
 	color: rgb(176, 176, 176);
 	text-align: center;
 }
-
+.danpin .main .mingxing .youhui{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
 .danpin .main .mingxing .jiage {
 	font-size: 14px;
 	text-align: center;
@@ -797,7 +805,7 @@ header .top .right .gouwuche a {
 
 /*jieshao*/
 .jieshao {
-	height: 560px;
+	height:800px;
 }
 
 .jieshao .left {
@@ -809,7 +817,7 @@ header .top .right .gouwuche a {
 .jieshao .right {
 	width: 620px;
 	background: rgb(248, 248, 248);
-	height: 600px;
+	height: 800px;
 }
 
 .jieshao .right .jianjie {
@@ -835,12 +843,14 @@ header .top .right .gouwuche a {
 	width: 278px;
 	cursor: pointer;
 	margin-right: 5px;
+	margin-bottom: 5px;
 	border: 1px solid #bbb;
+	text-align: center;
 }
 
 .jieshao .right .xzbb .banben a {
 	display: block;
-	font-size: 18px;
+	font-size: 16px;
 	color: #000;
 	padding: 0 10px;
 }
@@ -850,11 +860,11 @@ header .top .right .gouwuche a {
 	margin-right: 10px;
 }
 
-.jieshao .right .xzbb .banben a:hover {
+.jieshao .right .xzbb .banben a:hover{
 	color: #ff6700;
 }
 
-.jieshao .right .xzbb .banben:hover {
+.jieshao .right .xzbb .banben:hover{
 	border: 1px solid #ff6700;
 }
 
@@ -863,7 +873,8 @@ header .top .right .gouwuche a {
 	height: 15px;
 	width: 15px;
 	border-radius: 50%;
-	background: #000;
+	
+	border: 2px solid black;
 	margin-left: 80px;
 }
 
@@ -920,6 +931,7 @@ header .top .right .gouwuche a {
 .banner_x .dlzc ul li {
 	float: left;
 	font-size: 12px;
+	paddint-top:5px;
 }
 
 .banner_x .dlzc ul li a {
