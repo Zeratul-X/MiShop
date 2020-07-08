@@ -12,7 +12,7 @@ var allprice = 0;
 var ischeckedAll = false;
 var ischeckedSingle = false;
 //编辑按钮是否点击
-var allpriceArr = Array();
+var deleteallArr = Array();
 var isedit = false;
 $(window).load(function () {
     var username = unameFromUrl || unameFromCookie;
@@ -69,7 +69,7 @@ function actionsInTable(data) {
     })
     for (var i = 0; i < data.length; i++) {
         var currentid = parseInt(data[i][0]);
-        allpriceArr.push(data[i][0]);
+        deleteallArr.push(data[i][0]);
         //数量加事件处理
         $('#plus' + data[i][0]).on('click', {
             currentid: currentid
@@ -100,21 +100,10 @@ function actionsInTable(data) {
             if (parseInt($('#input' + event.data.currentid).val()) < 1) {
                 var res = confirm('是否删除该商品？');
                 if (res) {
-                    $.ajax({
-                        url: '../php/deleteSingleShopCar.php',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            'id': event.data.currentid
-                        },
-                        success: (delRes) => {
-                            console.log(delRes);
-                        }
-                    });
-                    location.reload();
+                    deleteData(event.data.currentid);
                 } else {
                     $('#input' + event.data.currentid).val(parseInt($('#input' + event.data.currentid).val()) + 1);
-                     $('#sumprice' + event.data.currentid).html(singleprice.toFixed(2) + '元');
+                    $('#sumprice' + event.data.currentid).html(singleprice.toFixed(2) + '元');
                     updateDataToDataBase(1, singleprice, event.data.currentid);
                 }
             }
@@ -145,29 +134,72 @@ function actionsInTable(data) {
         $('span.sum-selected').html(selectSum);
         $('span.bill-price').html('￥' + allprice.toFixed(2));
 
+        //编辑按钮中的单条删除操作
+        $('i#delgoods' + data[i][0]+'.del-product').on('click', {
+            currentid:currentid
+        }, function (event) {
+            if (isedit)
+            {
+                var res = confirm('是否删除该商品？');
+                if (res) {
+                    deleteData(event.data.currentid);
+                } else {
+                    return;
+                }
+            }
+        })
 
     }
-            console.log(allpriceArr);
+    console.log(deleteallArr);
+    //删除全部按钮 随便写的，标准情况下该删除数据方式会被K，不能在循环中做删除工作
+    $('em.goods-delete').on('click', function () {
+        var res = confirm('是否删除该商品？');
+        if (res) {
+            for (var j = 0; j < deleteallArr.length; j++) {
+                deleteData(deleteallArr[j]);
+            }
+        } else {
+            return;
+        }
+    });
+
+
 
 }
 
-function updateDataToDataBase(number, totalprice,id) {
-     $.ajax({
-         url: '../php/updateToShopCar.php',
-         type: 'post',
-         dataType: 'json',
-         data: {
-             'number': number,
-             'totalPrice': totalprice,
-             'id': id
-         },
-         success: (result) => {
-             console.log(result);
-         }
-     });
+function updateDataToDataBase(number, totalprice, id) {
+    $.ajax({
+        url: '../php/updateToShopCar.php',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            'number': number,
+            'totalPrice': totalprice,
+            'id': id
+        },
+        success: (result) => {
+            console.log(result);
+        }
+    });
 }
+
 function getAllPriceWhenCheckAll(data) {
-    for (var i = 0; i < data.length; i++){
+    for (var i = 0; i < data.length; i++) {
         allprice += parseFloat(data[i][8]);
     }
+}
+function deleteData(id) {
+    $.ajax({
+        url: '../php/deleteSingleShopCar.php',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            'id':id
+        },
+        success: (data) => {
+            if (data.code == 0) {
+                location.reload();
+            }
+        }
+    });
 }

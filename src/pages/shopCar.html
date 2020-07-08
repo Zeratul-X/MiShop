@@ -30,7 +30,7 @@
 				<table>
 					<tr>
 						<td class="check-area">
-							<a href="javascript:;" class="check-label check-all" >
+							<a href="javascript:;" class="check-label check-all">
 								<i class="checkbox">
 									<span class="check-mark"></span>
 								</i>
@@ -91,6 +91,7 @@
 	<script src="../lib/template-web.js"></script>
 	<script type="text/template" id="goodsTemplate">
 		<li class="goods-list">
+		<%if(data.length>0) {%>
 		<%for(var i=0;i<data.length;i++){%>
 			<table class="goods-body">
 				<tr>
@@ -125,13 +126,16 @@
 					</td>
 					<td class="goods-col-ctrl">
 						<span>- -</span>
-						<i class="del-product">
+						<i class="del-product" id="delgoods<%=data[i][0]%>">
 							<span class="line-left"></span>
 							<span class="line-right"></span>
 						</i>
 					</td>
 				</tr>
 			</table>
+		<%}%>
+		<%}else{%>
+			<p1 style="font-size:40px;text-align:center;padding-left:200px;margin:auto;color:gray;">您的购物车空空的，快去选购商品！</p1>
 		<%}%>
 		</li>
 	</script>
