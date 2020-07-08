@@ -22,6 +22,19 @@ var mySwiper = new Swiper('.swiper-container', {
  * 顶部滚动到500px显示返回顶部
  */
 $(window).scroll(function () {
+    if ($(window).scrollTop() > 100){
+        $('#search').css({
+            'position': 'sticky',
+            'top': '0',
+        });
+        $('.banner_x').css({
+            'background':'gray',
+        })
+    } else {
+        $('.banner_x').css({
+            'background': 'none',
+        })
+    }
     if ($(window).scrollTop() > 500)
     {
         $('.backtotop').css({
@@ -38,5 +51,5 @@ $(window).scroll(function () {
  * 回到顶部按钮事件
  */
 $('.backtotop').click(() => {
-    $('body').animate({ scrollTop: '0' }, 'slow');
+    $('body,html').animate({ 'scrollTop': '0' }, 'slow');
 })

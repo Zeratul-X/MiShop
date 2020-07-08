@@ -2,6 +2,7 @@ var url = location.search; //?id=1
 var urlArr = url.split('?'); //[" ","id=1"]
 var idstr = ""; //"id=1"
 var colorArr = [];
+var chooseContent = Array();
 
 for (var i = 0; i < urlArr.length; i++) {
     if (urlArr[i]) {
@@ -33,7 +34,7 @@ $(window).load(function () {
             'idstr': idstr
         },
         success: (data) => {
-            console.log(data);
+
             //加载页面先显示第一个数据的样式
             $('#img1').attr('src', data[1][5]);
             $('#img2').attr('src', data[1][6]);
@@ -56,13 +57,13 @@ function loadData(data) {
     $('#singleContent').html(data[data.length - 2] + " 全网通版 " + data[0][2] + " " + data[0][1]);
     $('#singleprice').html(data[0][3] + " 元");
     $('#total').html("总计：" + data[0][3] + " 元");
-    for (var i = 0; i < 3; i++){
+    for (var i = 0; i < 3; i++) {
         if (i % 2 == 0) {
             $('#goodsEdition').append("<div class='banben fl' style='dlsplay:inline;' id='edition" + i + "'><a><span>全网通版 " + data[i][2] + "</span><span>" + data[i][3] + "元</span></a></div>");
         } else {
             $('#goodsEdition').append("<div class='banben fr' style='dlsplay:inline;' id='edition" + i + "'><a><span>全网通版 " + data[i][2] + "</span><span>" + data[i][3] + "元</span></a></div>");
         }
-}
+    }
     //循环data
     for (var i = 0; i < data.length - 2; i++) {
         //将不同的颜色存入colorArr中
@@ -84,7 +85,7 @@ function loadData(data) {
                 color: colorArr[j]
             },
             function (event) {
-                var singleObj=new Array() ;
+                var singleObj = new Array();
                 var color = event.data.color;
                 for (var i = 0; i < data.length - 2; i++) {
                     if (data[i][1] == color) {
@@ -102,21 +103,29 @@ function loadData(data) {
                 //循环去掉空值后的singleObj并设置版本
                 singleObj = singleObj.filter(item => item);
                 $('#goodsEdition').html("");
-                for (var j = 0; j < singleObj.length; j++){
+                for (var j = 0; j < singleObj.length; j++) {
                     if (j % 2 == 0) {
-                        $('#goodsPrice').html(singleObj[0][3]+'元');
+                        $('#goodsPrice').html(singleObj[0][3] + '元');
                         $('#goodsEdition').append("<div class='banben fl' style='dlsplay:inline;' id='edition" + j + "'><a><span>全网通版 " + singleObj[j][2] + "</span><span>" + singleObj[j][3] + "元</span></a></div>");
                     } else {
-                         $('#goodsPrice').html(singleObj[0][3] + '元');
-                         $('#goodsEdition').append("<div class='banben fr' style='dlsplay:inline;' id='edition" + j + "'><a><span>全网通版 " + singleObj[j][2] + "</span><span>" + singleObj[j][3] + "元</span></a></div>");
+                        $('#goodsPrice').html(singleObj[0][3] + '元');
+                        $('#goodsEdition').append("<div class='banben fr' style='dlsplay:inline;' id='edition" + j + "'><a><span>全网通版 " + singleObj[j][2] + "</span><span>" + singleObj[j][3] + "元</span></a></div>");
                     }
-
-                    $('#edition' + j).bind('click', { index: j }, function (event) {
+                    $('#edition' + j).bind('click', {
+                        index: j
+                    }, function (event) {
                         //设置数据
                         $('#goodsPrice').html(singleObj[event.data.index][3] + '元');
                         $('#singleContent').html(data[data.length - 2] + " 全网通版 " + singleObj[event.data.index][2] + " " + singleObj[event.data.index][1]);
                         $('#singleprice').html(singleObj[event.data.index][3] + " 元");
-                        $('#total').html("总计："+singleObj[event.data.index][3] + " 元");
+                        $('#total').html("总计：" + singleObj[event.data.index][3] + " 元");
+                        //goodcontent
+                        chooseContent['goodsId'] = singleObj[event.data.index][9];
+                        chooseContent['goodsName'] = data[data.length - 2];
+                        chooseContent['goodsEdition'] = singleObj[event.data.index][2];
+                        chooseContent['goodsColor'] = singleObj[event.data.index][1];
+                        chooseContent['singlePrice'] = singleObj[event.data.index][3];
+                        chooseContent['imgUrl'] = singleObj[event.data.index][8];
                     });
                 }
 
@@ -125,3 +134,115 @@ function loadData(data) {
     }
 
 }
+
+$('#addToCar').on('click', function () {
+    var cookieArr = $.cookie();
+    var username = cookieArr['uname'];
+    chooseContent['username'] = username;
+    //先查当前登录用户下所有购物车中的商品
+    if (chooseContent['username']) {
+        $.ajax({
+            url: '../php/checkShopCar.php',
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'username': chooseContent['username'],
+            },
+            success: (data) => {
+                console.log(data);
+                if (data.code == 1) {
+                    //说明当前用户的购物车没有商品信息
+                    //直接将该商品insert into
+                    insertDataToDataBase(chooseContent);
+                    alert('添加购物车成功');
+                } else {
+                    var isSingle = false;
+                    var insertOnce = false;
+                    //说明当前用户下的购物车存在商品信息
+                    for (var i = 0; i < data.length; i++){
+                        if (
+                            data[i][1] == chooseContent['goodsId'] &&
+                             data[i][4] == chooseContent['username'] &&
+                             data[i][6] == chooseContent['goodsEdition'] &&
+                             data[i][7] == chooseContent['goodsColor']
+                        ) {
+                            isSingle = true;
+                            alert("当前选中的商品已存在购物车中，请前往购物车查看");
+                            return;
+                        } else {
+                            if (!isSingle) {
+                                insertOnce = true;
+                            } else {
+                                insertOnce = false;
+                            }
+                         }
+                    }
+                    if (insertOnce) {
+                        insertDataToDataBase(chooseContent);
+                    }
+
+                }
+            }
+        });
+    }
+});
+
+function insertDataToDataBase(chooseContent) {
+    chooseContent['totalPrice'] = chooseContent['singlePrice'];
+    chooseContent['number'] = 1;
+    console.log(chooseContent);
+    $.ajax({
+        url:'../php/addToShopCarNoInfo.php',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            'goodsId': chooseContent['goodsId'],
+            'goodsName': chooseContent['goodsName'],
+            'userName': chooseContent['username'],
+            'number': chooseContent['number'],
+            'goodsEdition': chooseContent['goodsEdition'],
+            'goodsColor': chooseContent['goodsColor'],
+            'totalPrice': chooseContent['totalPrice'],
+            'singlePrice': chooseContent['singlePrice'],
+            'imgUrl': chooseContent['imgUrl']
+        },
+        success: (data)=>{
+            console.log(data);
+
+        }
+    });
+
+}
+
+
+
+
+/*
+ *1.check database
+  2.if(如果当前用户下没有任何购物车商品){
+        直接将该商品添加进购物车
+    }else{//当前用户下存在购物车商品
+        //3.先获取到当前用户下的所有商品列表
+        //4.遍历data
+        for(var i=0;i<data.length;i++){
+            //5.如果当前选择的商品chooseContent里面的goodsid,username,goodsediton,goodscolor不相同
+            if (data[i]['goodsid'] == chooseContent['goodsId'] &&
+                data[i]['username'] == chooseContent['userName'] &&
+                data[i]['goodsedition'] == chooseContent['goodEdition'] &&
+                data[i]['goodscolor'] == chooseContent['goodColor']
+                ){
+                    //6.取出当前匹配的id,并存入idsArr中,跳出循环
+                }else{
+                    //7.如果选中的商品不匹配以上数据库中的商品信息，直接将当前商品插入 insert into
+                }
+        }
+        //8.跳出循环后，先将idsArr遍历去重
+        for(var i=0;i<idsArr.length;i++){
+            if (idArr.indexOf(idsArr[i]) == -1) {
+                idArr.push(idsArr[i]);
+            }
+        }
+        log(idArr);
+        //9.根据商品id更新number update
+    }
+ */

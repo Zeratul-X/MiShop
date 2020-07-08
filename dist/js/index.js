@@ -1,1 +1,1 @@
-"use strict";
+"use strict";var mySwiper=new Swiper(".swiper-container",{direction:"horizontal",loop:!0,autoplay:!0,pagination:{el:".swiper-pagination"},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}});$(window).scroll(function(){500<$(window).scrollTop()?$(".backtotop").css({display:"block"}):$(".backtotop").css({display:"none"})}),$(".backtotop").click(function(){$("body").animate({scrollTop:"0"},"slow")});

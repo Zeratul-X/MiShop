@@ -1,8 +1,8 @@
 <?php
     include "../php/header.php";
     include "../php/connection.php";
-
-    $sql="SELECT * FROM GOODS WHERE TYPE=1";
+    $typestr=$_POST['typestr'];
+    $sql="SELECT * FROM GOODS WHERE $typestr";
     $res=mysqli_query($link,$sql);
     $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
     if($rows){

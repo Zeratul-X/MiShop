@@ -1,10 +1,24 @@
+var url = location.search; //?id=1
+var urlArr = url.split('?'); //[" ","id=1"]
+var typestr = ""; //"id=1"
+var colorArr = [];
+
+for (var i = 0; i < urlArr.length; i++) {
+    if (urlArr[i]) {
+        typestr = urlArr[i].toString();
+    }
+}
+
 
 $(window).load(function () {
+    console.log(typestr);
     $.ajax({
         url: '../php/goodsList.php',
         dataType: 'json',
-        type: 'get',
-        data: {},
+        type: 'post',
+        data: {
+            'typestr': typestr
+        },
         async: true,
         success: (data) => {
             console.log(data);
@@ -18,6 +32,7 @@ $(window).load(function () {
             //html片段加入页面
             $("#goodsList").html(html);
             itemclick(data);
+            //table内按钮操作逻辑
         }
     });
 });

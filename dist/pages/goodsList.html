@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><meta charset=UTF-8><title>小米手机列表</title><link rel=stylesheet type=text/css href=../css/style.css></head><body><div id=header></div><div class="banner_x center"><a href=../pages/index.html><div class="logo fl"></div></a><a href=""><div class="ad_top fl"></div></a><div class="nav fl"><ul><li><a href="">小米手机</a></li><li><a href="">红米</a></li><li><a href="">平板·笔记本</a></li><li><a href="">电视</a></li><li><a href="">盒子·影音</a></li><li><a href="">路由器</a></li><li><a href="">智能硬件</a></li><li><a href="">服务</a></li><li><a href="">社区</a></li></ul></div><div class="search fr"><form action="" method=post><div class="text fl"><input type=text class=shuru placeholder=小米6&nbsp;小米MIX现货></div><div class="submit fl"><input type=submit class=sousuo value=搜索></div><div class=clear></div></form><div class=clear></div></div></div><div class="danpin center"><div class="biaoti center">小米手机</div><div id=goodsList></div></div><div id=footer></div><script src=../lib/jquery.js></script><script src=../js/headers.js></script><script src=../lib/template-web.js></script><script type=text/template id=list> <% for(var i=0;i<data.num;i++){ %> <div class="main center"> <% for(var j=0;j<5;j++) {%> <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;"
+						id="item<%=data[i*5+j].id %>" index="<%=data[i*5+j].id %>"
+							onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
+							<div class="sub_mingxing"><img
+										src="<%=data[i*5+j].imgUrl %>"
+										alt="" style="width:160px;height:160px"></div>
+							<div class="pinpai"><%=data[i*5+j].goodsname %> </div>
+							<div class="youhui" ><%=data[i*5+j].goodscontent %></div>
+							<div class="jiage"><%=data[i*5+j].goodsprice %> 元</div>
+						</div> <%}%> <div class="clear"></div>
+				</div> <%}%> <% if(remianer!=0){ %> <div class="main center"> <% for(var k=0;k<data.remianer;k++){%> <div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;"
+						id="item<%=data[data.num*5+k].id %>" index="<%=data[data.num*5+k].id %>"
+							onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
+							<div class="sub_mingxing"><img
+										src="<%=data[data.num*5+k].imgUrl %>"
+										alt="" style="width:160px;height:160px"></div>
+							<div class="pinpai"><%=data[data.num*5+k].goodsname %></div>
+							<div class="youhui"><%=data[data.num*5+k].goodscontent %></div>
+							<div class="jiage"><%=data[data.num*5+k].goodsprice %> 元</div>
+						</div> <%}%> <div class="clear"></div>
+				</div> <%}%> </script><script src=../js/goodsList.js></script></body></html>
