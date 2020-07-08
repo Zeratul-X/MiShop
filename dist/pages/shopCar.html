@@ -1,1 +1,40 @@
-<!DOCTYPE html><html><head><meta charset=UTF-8><title>我的购物车-小米商城</title><link rel=stylesheet type=text/css href=../css/style.css></head><body><div id=header></div><div class="banner_x center"><a href=../pages/index.html target=_blank><div class="logo fl"></div></a><div class="wdgwc fl ml40">我的购物车</div><div class="wxts fl ml20">温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</div><div class="dlzc fr"><ul><li><a href=../pages/login.html target=_blank>登录</a></li><li>|</li><li><a href=../pages/register.html target=_blank>注册</a></li></ul></div><div class=clear></div></div><div class=xiantiao></div><div class=gwcxqbj><div class="gwcxd center"><div class="top2 center"><div class="sub_top fl"><input type=checkbox value=quanxuan class=quanxuan>全选</div><div class="sub_top fl">商品名称</div><div class="sub_top fl">单价</div><div class="sub_top fl">数量</div><div class="sub_top fl">小计</div><div class="sub_top fr">操作</div><div class=clear></div></div><div class="content2 center"><div class="sub_content fl"><input type=checkbox value=quanxuan class=quanxuan></div><div class="sub_content fl"><img src=../images/gwc_xiaomi6.jpg></div><div class="sub_content fl ft20">小米6全网通6GB内存+64GB 亮黑色</div><div class="sub_content fl">2499元</div><div class="sub_content fl"><input class=shuliang type=number value=1 step=1 min=1></div><div class="sub_content fl">2499元</div><div class="sub_content fl"><a href="">×</a></div><div class=clear></div></div><div class="content2 center"><div class="sub_content fl"><input type=checkbox value=quanxuan class=quanxuan></div><div class="sub_content fl"><img src=../images/gwc_xiaomi6.jpg></div><div class="sub_content fl ft20">小米6全网通6GB内存+64GB 亮黑色</div><div class="sub_content fl">2499元</div><div class="sub_content fl"><input class=shuliang type=number value=1 step=1 min=1></div><div class="sub_content fl">2499元</div><div class="sub_content fl"><a href="">×</a></div><div class=clear></div></div></div><div class="jiesuandan mt20 center"><div class="tishi fl ml20"><ul><li><a href=../pages/liebiao.html>继续购物</a></li><li>|</li><li>共<span>2</span>件商品，已选择<span>1</span>件</li><div class=clear></div></ul></div><div class="jiesuan fr"><div class="jiesuanjiage fl">合计（不含运费）：<span>2499.00元</span></div><div class="jsanniu fr"><input class=jsan type=submit name=jiesuan value=去结算></div><div class=clear></div></div><div class=clear></div></div></div><div id=footer></div><script src=../lib/jquery.js></script><script src=../js/headers.js></script></body></html>
+<!DOCTYPE html><html><head><meta charset=UTF-8><title>我的购物车-小米商城</title><link rel=stylesheet type=text/css href=../css/style.css><link rel=stylesheet href=../css/cart.css></head><body><div id=header></div><div class="banner_x center"><a href=../pages/index.html target=_blank><div class="logo fl"></div></a><div class="wdgwc fl ml40">我的购物车</div><div class="wxts fl ml20">温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</div><div class=clear></div></div><div class=xiantiao></div><div class=mzContainer><div class=check-container><div class=shop-cart-nav><table><tr><td class=check-area><a href=javascript:; class="check-label check-all"><i class=checkbox><span class=check-mark></span> </i><em class=check-name>全选</em></a></td><td class=singal-price>单价(元)</td><td class=volumes>数量</td><td class=small-total>小计(元)</td><td class=edit-area><span class=edit>编辑</span></td></tr></table></div><ul class=goods-ul id=goodsInfo></ul></div><div class=shop-cart-footer><div class="cart-foot clearfix"><div class=cart-foot-left><a href=javascript:; class="check-label check-all"><i class=checkbox><span class=check-mark></span> </i><em class=check-name>全选</em> </a><em class=goods-delete>删除选中的商品</em> <em class=goods-num>共<span class=sum></span>件商品， 已选择&nbsp;<span class=sum-selected></span>&nbsp;件</em></div><div class=cart-foot-right><em class=total-bill>合计(不含运费)： <span class=bill-price></span> </em><a href=javascript:; class="order-btn ban-order">去结算</a></div></div></div></div><div id=footer></div><script src=../lib/jquery.js></script><script src=../lib/jquery.cookie.js></script><script src=../js/headers.js></script><script src=../lib/template-web.js></script><script type=text/template id=goodsTemplate><li class="goods-list"> <%if(data.length>0) {%> <%for(var i=0;i<data.length;i++){%> <table class="goods-body">
+				<tr>
+					<td class="goods-col-select">
+						<a href="javascript:;" class="check-label check-product" id="checksingle<%=data[i][0]%>">
+							<i class="checkbox">
+								<span class="check-mark"></span>
+							</i>
+						</a>
+						<a href="javascript:;" class="goods-img">
+							<img src="<%=data[i][10]%>" alt="">
+						</a>
+						<a href="javascript:;" class="goods-info">
+							<h4 class="goods-info-title">
+								全网通版&nbsp&nbsp<%=data[i][2]%>&nbsp&nbsp<%=data[i][6]%>&nbsp&nbsp<%=data[i][7]%></h4>
+							<p class="goods-info-tips"></p>
+						</a>
+					</td>
+					<td class="goods-col-price">
+						<span id="oneprice<%=data[i][0] %>"><%=data[i][9]%>元</span>
+					</td>
+					<td class="goods-col-volumes">
+						<div class="num-ctrl-area clearfix">
+							<button class="minus" id="minus<%=data[i][0]%>">-</button>
+							<input type="text" value="<%=data[i][5]%>" class="input" id="input<%=data[i][0]%>">
+							<button class="plus" id="plus<%=data[i][0]%>">+</button>
+							<!-- <em class="hint">限购10件</em> -->
+						</div>
+					</td>
+					<td class="goods-col-total">
+						<span id="sumprice<%=data[i][0]%>"><%=data[i][8]%>元</span>
+					</td>
+					<td class="goods-col-ctrl">
+						<span>- -</span>
+						<i class="del-product" id="delgoods<%=data[i][0]%>">
+							<span class="line-left"></span>
+							<span class="line-right"></span>
+						</i>
+					</td>
+				</tr>
+			</table> <%}%> <%}else{%> <p1 style="font-size:40px;text-align:center;padding-left:200px;margin:auto;color:gray;">您的购物车空空的，快去选购商品！</p1> <%}%> </li></script><script src=../js/shopCar.js></script></body></html>
