@@ -4,16 +4,16 @@
 仿照小米商城做的一个学习案例
 
 #### 用到的技术
-H5
-CSS
-javascript
-template
-mysql
-php
-jQuery
-swiper
-lazyload
-...
+-H5
+-CSS
+-javascript
+-template
+-mysql
+-php
+-jQuery
+--swiper
+-lazyload
+-......
 
 
 #### 使用说明
