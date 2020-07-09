@@ -193,6 +193,7 @@ function deleteData(id) {
         url: '../php/deleteSingleShopCar.php',
         type: 'post',
         dataType: 'json',
+        async: false,
         data: {
             'id':id
         },

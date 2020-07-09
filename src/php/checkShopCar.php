@@ -4,7 +4,7 @@ include "./connection.php";
 
 $username=$_POST['username'];
 
-$sql="SELECT * FROM SHOPCAR WHERE USERID=(SELECT ID FROM USER WHERE USERNAME='$username') AND USERNAME='$username'";
+$sql="SELECT * FROM SHOPCAR WHERE USERID=(SELECT ID FROM USER WHERE USERNAME='$username') AND USERNAME='$username' ORDER BY GOODSNAME DESC";
 
 $res = mysqli_query($link, $sql);
 $rows = mysqli_fetch_all($res);

@@ -94,3 +94,12 @@ $('#registerBtn').click(function(){
         }
     });
 });
+
+  /**
+   * 懒加载
+   */
+  lazyLoadInit({
+      offsetBottom: 0,
+      offsetTopm: 0,
+      showTime: 1100,
+  });

@@ -150,7 +150,7 @@ $('#addToCar').on('click', function () {
             },
             success: (data) => {
                 console.log(data);
-                if (data.code == 1) {
+                if (data.code == 1 || data.code==0) {
                     //说明当前用户的购物车没有商品信息
                     //直接将该商品insert into
                     insertDataToDataBase(chooseContent);
@@ -215,34 +215,3 @@ function insertDataToDataBase(chooseContent) {
 }
 
 
-
-
-/*
- *1.check database
-  2.if(如果当前用户下没有任何购物车商品){
-        直接将该商品添加进购物车
-    }else{//当前用户下存在购物车商品
-        //3.先获取到当前用户下的所有商品列表
-        //4.遍历data
-        for(var i=0;i<data.length;i++){
-            //5.如果当前选择的商品chooseContent里面的goodsid,username,goodsediton,goodscolor不相同
-            if (data[i]['goodsid'] == chooseContent['goodsId'] &&
-                data[i]['username'] == chooseContent['userName'] &&
-                data[i]['goodsedition'] == chooseContent['goodEdition'] &&
-                data[i]['goodscolor'] == chooseContent['goodColor']
-                ){
-                    //6.取出当前匹配的id,并存入idsArr中,跳出循环
-                }else{
-                    //7.如果选中的商品不匹配以上数据库中的商品信息，直接将当前商品插入 insert into
-                }
-        }
-        //8.跳出循环后，先将idsArr遍历去重
-        for(var i=0;i<idsArr.length;i++){
-            if (idArr.indexOf(idsArr[i]) == -1) {
-                idArr.push(idsArr[i]);
-            }
-        }
-        log(idArr);
-        //9.根据商品id更新number update
-    }
- */

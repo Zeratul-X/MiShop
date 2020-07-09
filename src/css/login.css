@@ -45,6 +45,14 @@ body {
 .fr {
     float: right;
 }
+/* 左右浮动 */
+.floatleft {
+    float: left;
+}
+
+.floatright {
+    float: right;
+}
 
 .clear {
     clear: both;
@@ -338,21 +346,156 @@ input:focus {
     border: 1px solid #ccc;
 }
 
-footer {
-    width: 100%;
-    height: 80px;
-    background: #fff;
-    padding: 30px 0;
+.footer {
+    height: 400px;
 }
 
-footer .copyright {
-    height: 30px;
-    line-height: 30px;
-    font-size: 13px;
-    word-spacing: 15px;
+.footer_top {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    /* border-bottom: solid 1px rgb(102, 101, 101); */
+}
+
+.footer_top ul {
+    height: 22px;
+}
+
+.footer_top ul li {
+    float: left;
+    width: 241px;
+    height: 25px;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.footer_top ul li a {
+    color: black;
+}
+
+.footer_top ul li a i {
+    font-size: 20px;
+}
+
+.footer_top ul li:nth-child(2),
+.footer_top ul li:nth-child(4),
+.footer_top ul li:nth-child(6),
+.footer_top ul li:nth-child(8) {
+    width: 2px;
+    height: 25px;
+    background-color: rgb(102, 101, 101);
+}
+
+.footer_top ul li a:hover {
+    color: #ff6700 !important;
+}
+
+.footer_bottom_item {
+    float: left;
+    width: 160px;
+}
+
+.footer_bottom_item dl dt a {
+    font-size: 16px;
+    color: black;
+}
+
+.footer_bottom_item dl dt {
+    margin-bottom: 26px;
+}
+
+.footer_bottom_item dl dd {
+    margin-top: 18px;
+}
+
+.footer_bottom_item dl dd a {
+    color: black;
+    font-size: 12px;
+}
+
+.footer_bottom_item dl dd a:hover {
+    color: #ff6700;
+}
+
+.footer_bottom_right {
+    margin-left: 10px;
+    width: 252px;
+    height: 130px;
+    /* background-color: red; */
+    border-left: 1px solid rgb(102, 101, 101);
     text-align: center;
 }
 
-footer .copyright:first-of-type {
-    margin-top: 10px;
+.mostfooter {
+    background-color: #f5f5f5;
+    padding-top: 30px;
+    overflow: hidden;
+}
+
+.mostfooter_left {
+    margin-right: 5px;
+}
+
+.mostfooter_right {
+    font-size: 12px;
+    color: black;
+}
+
+.moustfooter_content {
+    overflow: hidden;
+}
+
+.mostfooter_right a {
+    font-size: 12px;
+    color: black;
+}
+
+.mostfooter_right6 a img {
+    width: 85px;
+    height: 30px;
+}
+
+.moustfooter_bottom {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.right1 {
+    font-size: 22px;
+    color: #ff6700;
+}
+
+.right2 {
+    font-size: 12px;
+    color: darkgray;
+}
+
+.right3 {
+    padding: 10px 0;
+    text-align: center;
+
+}
+
+.right3_content {
+    width: 120px;
+    height: 30px;
+    border: 1px solid #ff6700;
+    font-size: 12px;
+    margin: 0 auto;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.right3_content_hover {
+    color: #fff !important;
+    background-color: #ff6700 !important;
+}
+
+.right4 {
+    font-size: 12px;
+}
+
+.right4 span:hover {
+    color: #ff6700;
+    cursor: pointer;
 }
