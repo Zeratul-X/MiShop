@@ -149,7 +149,6 @@ $('#addToCar').on('click', function () {
                 'username': chooseContent['username'],
             },
             success: (data) => {
-                console.log(data);
                 if (data.code == 1 || data.code==0) {
                     //说明当前用户的购物车没有商品信息
                     //直接将该商品insert into
@@ -190,7 +189,6 @@ $('#addToCar').on('click', function () {
 function insertDataToDataBase(chooseContent) {
     chooseContent['totalPrice'] = chooseContent['singlePrice'];
     chooseContent['number'] = 1;
-    console.log(chooseContent);
     $.ajax({
         url:'../php/addToShopCarNoInfo.php',
         type: 'post',
@@ -207,7 +205,6 @@ function insertDataToDataBase(chooseContent) {
             'imgUrl': chooseContent['imgUrl']
         },
         success: (data)=>{
-            console.log(data);
 
         }
     });

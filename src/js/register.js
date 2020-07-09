@@ -89,7 +89,6 @@ $('#registerBtn').click(function(){
             'hasName': hasName
         },
         success: (data) => {
-            console.log(data);
 
         }
     });

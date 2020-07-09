@@ -2,9 +2,9 @@
 include "./header.php";
 include "./connection.php";
 
-$id=$_POST['id'];
+$idstr=$_POST['idstr'];
 
-$sql="DELETE FROM SHOPCAR WHERE ID=$id";
+$sql="DELETE FROM SHOPCAR WHERE ID IN ($idstr)";
 $res = mysqli_query($link, $sql);
 if($res){
     $json = array('code' => 0, 'content' => '删除成功');

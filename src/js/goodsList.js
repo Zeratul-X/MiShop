@@ -11,7 +11,6 @@ for (var i = 0; i < urlArr.length; i++) {
 
 
 $(window).load(function () {
-    console.log(typestr);
     $.ajax({
         url: '../php/goodsList.php',
         dataType: 'json',
@@ -21,7 +20,6 @@ $(window).load(function () {
         },
         async: true,
         success: (data) => {
-            console.log(data);
             var num = Math.floor(data.length / 5);
             var remianer = data.length % 5;
             data['num'] = num;

@@ -37,7 +37,6 @@ $('#loginBtn').click(function () {
         },
         dataType: 'json',
         success: (data) => {
-            console.log(data);
             if (data.code == 0) {
                 window.location.href = '../pages/index.html';
             }
